@@ -1,0 +1,76 @@
+---
+- name: using git module
+  hosts: debian
+  become: yes
+  
+  vars_files:
+    - secrets.yml
+  vars:
+    - dir: /app/pg-promise
+
+  handlers:
+    - name: Restart postgresql
+      service:
+        name: postgresql
+        state: restarted
+
+    - name: Restart environment
+      shell: "source /etc/environment"
+
+  tasks:
+    - name: Install dependencies to run the project
+      apt:
+        name: 
+          - nodejs
+          - postgresql
+          - git
+        state: latest
+        update_cache: yes
+      register: dp_results
+
+    - name: show the dependencies result
+      debug: var=dp_results.stdout
+    
+    - name: Replace peer to be trust in postgresql conf
+      lineinfile:
+        path: /etc/postgresql/11/main/pg_hba.conf
+        regex: '^local   all             postgres                                peer'
+        line: "local   all             postgres                                trust"
+        state: present 
+      notify:
+        - Restart postgresql
+
+    - name: clone repo 
+      git:
+        repo: "https://{{ gituser }}:{{ gitpass }}@github.com/fabiokleis/pg-promise"
+        dest: "{{ dir }}"
+
+    - name: Install npm modules
+      shell: "npm install"
+      args:
+        chdir: "{{ dir }}"
+      register: npm_results
+    
+    - name: show npm result
+      debug: var=npm_results.stdout
+
+    - name: Send enviroment variables
+      template:
+        src: env.j2
+        dest: "/etc/environment"
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+      notify:
+        - Restart environment
+
+    - name: Create database
+      shell: "npm run createdb"
+      args:
+        chdir: "{{ dir }}"
+
+    - name: Start app
+      shell: "npm start"
+      args: 
+        chdir: "{{ dir }}" 
+
