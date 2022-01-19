@@ -16,7 +16,8 @@
         state: restarted
 
     - name: Restart environment
-      shell: ". /etc/pg-promise.conf"
+      shell: "while IFS= read -r i; do echo $i >> /etc/environment; done < /etc/pg-promise.conf; \
+              . /etc/environment"
 
   tasks:
     - name: Install dependencies to run the project
