@@ -27,7 +27,7 @@
   tags:
     - nvm
 
-- name: source profile and install 
+- name: source profile and install node 
   shell: ". ~/.profile; nvm install 17.4.0"
   tags:
     - node
