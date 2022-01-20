@@ -1,0 +1,6 @@
+---
+# setup git vars
+
+# git credentials to manipulate repos
+gituser: "{{ vault_gituser }}"
+gitpass: "{{ vault_gitpass }}"

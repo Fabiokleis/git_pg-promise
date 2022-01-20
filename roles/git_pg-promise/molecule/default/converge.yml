@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include git_pg-promise"
+      include_role:
+        name: "git_pg-promise"

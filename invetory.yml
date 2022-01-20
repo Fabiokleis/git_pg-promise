@@ -1,0 +1,9 @@
+---
+all:
+  hosts:
+    ubuntu.sysadmin.example:
+    debian.sysadmin.example:
+  children:
+    pg_promise:
+      hosts:
+        ubuntu.sysadmin.example:

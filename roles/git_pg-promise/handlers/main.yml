@@ -1,0 +1,11 @@
+---
+# handlers file for git_pg-promise
+- name: Restart postgresql
+  service:
+    name: postgresql
+    state: restarted
+
+- name: Restart environment
+  shell: "while IFS= read -r i; do echo $i >> /etc/environment; done < /etc/{{ pg_conf }}; \
+          . /etc/environment"
+

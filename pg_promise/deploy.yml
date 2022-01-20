@@ -1,0 +1,6 @@
+---
+- name: Deploy git_pg-promise app
+  hosts: pg_promise
+  become: yes
+  roles:
+    - role: git_pg-promise

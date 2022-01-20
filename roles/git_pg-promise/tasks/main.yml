@@ -1,0 +1,54 @@
+---
+# tasks file for git_pg-promise app
+- name: Install dependencies
+  import_tasks: dependencies.yml
+
+- name: Configure postgresql
+  import_tasks: psql.yml 
+
+- name: clone repo 
+  git:
+    repo: "https://{{ gituser }}:{{ gitpass }}@github.com/fabiokleis/pg-promise"
+    dest: "{{ dir }}" 
+  tags:
+    - clone
+
+- name: Install npm modules
+  shell: ". ~/.profile; npm install"
+  args:
+    chdir: "{{ dir }}"
+  register: npm_results
+  tags:
+    - npm_install
+
+- name: show npm result
+  debug: var=npm_results.stdout
+  tags:
+    - npm_install
+
+- name: Sending environment variables
+  template:
+    src: env.j2
+    dest: "{{ pg_conf }}"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  notify:
+    - Restart environment
+  tags:
+    - config
+
+- name: Create database
+  shell: "npm run createdb"
+  args:
+    chdir: "{{ dir }}"
+  tags:
+    - database
+
+- name: Start app
+  shell: "npm start"
+  args: 
+    chdir: "{{ dir }}" 
+  tags:
+    - start
+
