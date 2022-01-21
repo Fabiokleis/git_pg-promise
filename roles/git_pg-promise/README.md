@@ -6,7 +6,9 @@ Clona o repositorio [pg-promise](https://github.com/fabiokleis/pg-promise), inst
 Requirements
 ------------
 
-...
+1. Módulos:
+   1. geerlingguy.nodejs
+
 
 Role Variables
 --------------

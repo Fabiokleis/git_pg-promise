@@ -4,7 +4,11 @@
 - name: Verify
   hosts: all
   gather_facts: false
+  become: true
   tasks:
   - name: Example assertion
     assert:
       that: true
+  - name:
+    include_role:
+      name: pg-promise

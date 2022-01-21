@@ -1,7 +1,16 @@
 ---
 - name: Converge
   hosts: all
+  vars_files:
+    - vars.yml 
+    - ../../../../secrets.yml
+  
+  pre_tasks:
+   - name: Update repositories cache
+     apt:
+        update_cache: yes 
   tasks:
     - name: "Include git_pg-promise"
       include_role:
         name: "git_pg-promise"
+      

@@ -2,5 +2,9 @@
 - name: Deploy git_pg-promise app
   hosts: pg_promise
   become: yes
+  pre_tasks:
+    - name: Update repositories cache
+      apt:
+        update_cache: yes
   roles:
     - role: git_pg-promise

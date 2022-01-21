@@ -4,10 +4,18 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: instance
-    image: docker.io/pycontribs/centos:8
+  - name: debianpg
+    image: "geerlingguy/docker-debian10-ansible"
     pre_build_image: true
+    privileged: true
 provisioner:
   name: ansible
+  config_options:
+    defaults:
+      ask_vault_pass: true
 verifier:
   name: ansible
+  lint: |
+    set -e
+    yamllint .
+
