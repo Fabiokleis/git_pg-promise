@@ -14,21 +14,3 @@
 
 - name: show the dependencies result
   debug: var=dp_results.stdout
-
-- name: get nvm to install node
-  get_url: 
-    url: "https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh"
-    dest: "~/install.sh"
-  tags:
-    - nvm
-
-- name: Install nvm
-  shell: "sh ~/install.sh"
-  tags:
-    - nvm
-
-- name: source profile and install node 
-  shell: ". ~/.profile; nvm install 17.4.0"
-  tags:
-    - node
-

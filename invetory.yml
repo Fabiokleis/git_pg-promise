@@ -6,4 +6,5 @@ all:
   children:
     pg_promise:
       hosts:
-        debian.sysadmin.example:
+        ubuntu.sysadmin.example:
+

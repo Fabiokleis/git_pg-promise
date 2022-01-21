@@ -14,9 +14,8 @@
     - clone
 
 - name: Install npm modules
-  shell: ". ~/.profile; npm install"
-  args:
-    chdir: "{{ dir }}"
+  npm:
+    path: "{{ dir }}"
   register: npm_results
   tags:
     - npm_install
@@ -46,9 +45,6 @@
     - database
 
 - name: Start app
-  shell: "npm start"
-  args: 
-    chdir: "{{ dir }}" 
+  import_tasks: systemd_service.yml
   tags:
-    - start
-
+  - start
