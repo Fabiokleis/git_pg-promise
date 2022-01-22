@@ -6,6 +6,19 @@
 - name: Configure postgresql
   import_tasks: psql.yml 
 
+- name: Sending environment variables
+  template:
+    src: env.j2
+    dest: "{{ pg_conf }}"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  tags:
+    - config
+
+- name: Load environment variables
+  shell: "set -o allexport; source {{ pg_conf }}"
+
 - name: clone repo 
   git:
     repo: "https://{{ gituser }}:{{ gitpass }}@github.com/fabiokleis/pg-promise"
@@ -24,18 +37,6 @@
   debug: var=npm_results.stdout
   tags:
     - npm_install
-
-- name: Sending environment variables
-  template:
-    src: env.j2
-    dest: "{{ pg_conf }}"
-    owner: root
-    group: root
-    mode: u=rw,g=r,o=r
-  notify:
-    - Restart environment
-  tags:
-    - config
 
 - name: Create database
   shell: "npm run createdb"

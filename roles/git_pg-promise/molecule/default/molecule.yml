@@ -4,10 +4,16 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: debianpg
+  - name: debian_pg
     image: "geerlingguy/docker-debian10-ansible"
-    pre_build_image: true
-    privileged: true
+    command: /sbin/init
+    capabilities:
+      - SYS_ADMIN
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 provisioner:
   name: ansible
   config_options:

@@ -20,8 +20,14 @@
     regex: '^local   all             postgres                                peer'
     line: "local   all             postgres                                trust"
     state: present 
-  notify:
-    - Restart postgresql
   tags:
   - psql
+
+- name: Restart and enable postgresql
+  service:
+    name: postgresql
+    state: restarted
+    enabled: true
+
+
 
