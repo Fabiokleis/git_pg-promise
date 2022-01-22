@@ -7,11 +7,12 @@ Requirements
 ------------
 
 1. Módulos:
-   1. geerlingguy.nodejs
+   1. [geerlingguy.nodejs](https://galaxy.ansible.com/geerlingguy/nodejs)
 
 
 Role Variables
 --------------
+
 - `dir`: local do diretório do app
 - `pg_conf`: local do arquivo de variáveis de ambiente do app
 
@@ -22,7 +23,11 @@ Role Variables
 Dependencies
 ------------
 
-...
+   [dependencies](meta/main.yml)
+ - role: [geerlingguy.nodejs](https://galaxy.ansible.com/geerlingguy/nodejs)
+ - nodejs_version: 17.x
+ - nodejs_install_npm_user: root
+
 
 Example Playbook
 ----------------
@@ -33,6 +38,23 @@ Example Playbook
   roles:
     - role: git_pg_promise
 ```
+Molecule Tests
+--------------
+
+O Molecule nesta role está com systemd como inicializador
+para rodar o app como uma unit service.
+
+```bash
+molecule create            # para criar a instância do molecule com docker
+molecule list              # para mostrar as instâncias 
+molecule converge          # para testar a role
+molecule login             # para entrar num shell dentro do container
+molecule destroy           # para terminar a instância
+
+molecule test              # para fazer o processo completo!
+
+```
+
 License
 -------
 
