@@ -14,6 +14,9 @@ jobs:
   test:
     name: Molecule
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./roles/git_pg-promise/
     strategy:
       matrix:
         distro:
@@ -30,11 +33,8 @@ jobs:
           python-version: '3.x'
           
       - name: Install test dependencies.
-        run: pip3 install molecule docker yamllint ansible-lint
-           
-      - name: role dir
-        run: cd roles/git_pg-promise/
- 
+        run: pip3 install molecule molecule-docker yamllint ansible-lint
+     
       - name: Run molecule tests.
         run: molecule test
         env:
