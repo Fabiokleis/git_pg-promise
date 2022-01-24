@@ -4,7 +4,7 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: debian_pg
+  - name: instance
     image: "geerlingguy/docker-debian10-ansible"
     command: /sbin/init
     capabilities:
@@ -18,7 +18,8 @@ provisioner:
   name: ansible
   config_options:
     defaults:
-      ask_vault_pass: true
+      #ask_vault_pass: true
+      vault_password_file: ~/.vault
 verifier:
   name: ansible
   lint: |

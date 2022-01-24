@@ -16,9 +16,6 @@
   tags:
     - config
 
-- name: Load environment variables
-  shell: "set -o allexport; source {{ pg_conf }}"
-
 - name: clone repo 
   git:
     repo: "https://{{ gituser }}:{{ gitpass }}@github.com/fabiokleis/pg-promise"
@@ -37,6 +34,9 @@
   debug: var=npm_results.stdout
   tags:
     - npm_install
+
+- name: Loading environment variables
+  shell: "set -o allexport; . {{ pg_conf }}; set +o allexport"
 
 - name: Create database
   shell: "npm run createdb"

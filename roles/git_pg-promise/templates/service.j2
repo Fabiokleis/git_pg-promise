@@ -3,7 +3,6 @@ Description="Start pg-promise node application"
 After=network.target
 
 [Service]
-EnvironmentFile="{{ pg_conf }}"
 Type=simple
 ExecStart=/usr/bin/node "{{ dir }}/src/server.js"
 Restart=on-failure

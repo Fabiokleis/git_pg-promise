@@ -7,7 +7,7 @@
   
   pre_tasks:
    - name: Update repositories cache
-     apt:
+     package:
         update_cache: yes 
   tasks:
     - name: "Include git_pg-promise"

@@ -1,7 +1,7 @@
 ---
 # tasks file to install dependencies
 - name: Install dependencies to run the project
-  apt:
+  package:
     name: 
       - wget
       - postgresql
