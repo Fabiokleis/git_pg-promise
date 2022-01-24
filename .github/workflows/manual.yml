@@ -30,7 +30,10 @@ jobs:
           
       - name: Install test dependencies.
         run: pip3 install molecule docker yamllint ansible-lint
-        
+      
+      - name: role dir
+        run: cd roles/git_pg-promise/
+      
       - name: Run molecule tests.
         run: molecule test
         env:
