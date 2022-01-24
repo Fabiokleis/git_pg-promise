@@ -14,6 +14,9 @@ jobs:
   test:
     name: Molecule
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: roles/git_pg-promise/
     strategy:
       matrix:
         distro:
