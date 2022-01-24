@@ -34,7 +34,10 @@ jobs:
           python-version: '3.x'
           
       - name: Install test dependencies.
-        run: pip3 install molecule molecule-requests molecule-docker yamllint
+        run: pip3 install molecule requests molecule-docker yamllint
+        
+      - name: Upgrade
+        run: pip3 install requests --upgrade
      
       - name: Run molecule tests.
         run: molecule test
