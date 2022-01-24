@@ -37,6 +37,11 @@
 
 - name: Loading environment variables
   shell: "set -o allexport; . {{ pg_conf }}; set +o allexport"
+  notify:
+    - Restart postgresql
+
+- name: Flush handlers
+  meta: flush_handlers
 
 - name: Create database
   shell: "npm run createdb"
@@ -48,4 +53,4 @@
 - name: Start app
   import_tasks: systemd_service.yml
   tags:
-  - start
+    - start 
