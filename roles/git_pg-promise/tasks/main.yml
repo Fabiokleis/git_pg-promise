@@ -38,12 +38,12 @@
 - name: Loading environment variables
   shell: "set -o allexport; . {{ pg_conf }}; set +o allexport"
 
-- name: Create database
-  shell: "npm run createdb"
-  args:
-    chdir: "{{ dir }}"
-  tags:
-    - database
+#- name: Create database
+#  shell: "npm run createdb"
+#  args:
+#    chdir: "{{ dir }}"
+#  tags:
+#    - database
 
 - name: Start app
   import_tasks: systemd_service.yml
