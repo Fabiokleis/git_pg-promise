@@ -33,11 +33,8 @@ jobs:
         with:
           python-version: '3.x'
         
-      - name: Upgrade
-        run: python3 -m pip install --upgrade pip
-        
       - name: Install test dependencies.
-        run: python3 -m pip install molecule requests docker molecule-docker yamllint
+        run: pip3 install molecule[docker] yamllint ansible-lint
      
       - name: Run molecule tests.
         run: molecule test
