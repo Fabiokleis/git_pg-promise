@@ -13,7 +13,7 @@ jobs:
 
   test:
     name: Molecule
-    runs-on: centos7
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         distro:
