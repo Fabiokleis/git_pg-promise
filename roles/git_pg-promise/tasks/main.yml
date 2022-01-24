@@ -37,15 +37,20 @@
 
 - name: Loading environment variables
   shell: "set -o allexport; . {{ pg_conf }}; set +o allexport"
+  notify:
+    - Restart postgresql
 
-#- name: Create database
-#  shell: "npm run createdb"
-#  args:
-#    chdir: "{{ dir }}"
-#  tags:
-#    - database
+- name: Flush handlers
+  meta: flush_handlers
 
-#- name: Start app
-#  import_tasks: systemd_service.yml
-#  tags:
-#  - start
+- name: Create database
+  shell: "npm run createdb"
+  args:
+    chdir: "{{ dir }}"
+  tags:
+    - database
+
+- name: Start app
+  import_tasks: systemd_service.yml
+  tags:
+    - start 
