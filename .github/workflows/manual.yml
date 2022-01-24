@@ -13,11 +13,12 @@ jobs:
 
   test:
     name: Molecule
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         distro:
           - ubuntu
+          - debian10
           - centos8
     steps:
       - name: Check out the codebase.
