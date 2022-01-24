@@ -5,7 +5,7 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: "geerlingguy/docker-debian10-ansible"
+    image: "geerlingguy/docker-${MOLECULE_DISTRO}-ansible"
     command: /sbin/init
     capabilities:
       - SYS_ADMIN
