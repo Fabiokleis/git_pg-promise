@@ -23,6 +23,11 @@
   tags:
     - clone
 
+- name: Install npm update
+  shell: npm install -g npm@8.3.2
+  tags:
+    - npm_update
+
 - name: Install npm modules
   npm:
     path: "{{ dir }}"
@@ -48,4 +53,4 @@
 - name: Start app
   import_tasks: systemd_service.yml
   tags:
-  - start
+    - start

@@ -4,6 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
+User=root
+EnvironmentFile=/etc/pg_environment.conf
 ExecStart=/usr/bin/node "{{ dir }}/src/server.js"
 Restart=on-failure
 
