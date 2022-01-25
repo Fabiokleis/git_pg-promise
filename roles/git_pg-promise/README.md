@@ -42,16 +42,17 @@ Molecule Tests
 --------------
 
 O Molecule nesta role está com systemd como inicializador
-para rodar o app como uma unit service.
+para rodar o app como uma unit service, MOLECULE_DISTRO é a
+variável para setar uma sistema que será rodado.
 
 ```bash
-molecule create            # para criar a instância do molecule com docker
-molecule list              # para mostrar as instâncias 
-molecule converge          # para testar a role
-molecule login             # para entrar num shell dentro do container
-molecule destroy           # para terminar a instância
+MOLECULE_DISTRO=debian10 molecule create            # para criar a instância do molecule com docker
+molecule list                                       # para mostrar as instâncias 
+molecule converge                                   # para testar a role
+molecule login                                      # para entrar num shell dentro do container
+molecule destroy                                    # para terminar a instância
 
-molecule test              # para fazer o processo completo!
+MOLECULEE_DISTRO=ubuntu2004 molecule test           # para fazer o processo completo!
 
 ```
 
