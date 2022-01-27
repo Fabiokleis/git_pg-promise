@@ -38,6 +38,9 @@ jobs:
       
       - name: Sending vault variables
         run: echo '${{secrets.GITVAULT}}' > ~/secrets.yml
+      
+      - name: Show vault file
+        run: cat ~/secrets.yml
         
       - name: Encrypt vault variables
         run: ansible-vault encrypt ~/secrets.yml --vault-pass-file ~/.vault
