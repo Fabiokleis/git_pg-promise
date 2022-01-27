@@ -9,6 +9,12 @@
   tags:
   - psql
 
+- name: start postgresql
+  service:
+    name: postgresql
+    state: started
+    enabled: true 
+
 - name: show content of pg_hba
   debug: var=pg_hba.files[0].path
   tags:
