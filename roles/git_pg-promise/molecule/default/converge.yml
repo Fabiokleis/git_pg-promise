@@ -1,10 +1,12 @@
 ---
 - name: Converge
   hosts: all
+
   vars_files:
     - vars.yml 
-    - ../../../../secrets.yml
-  
+  vars:
+    optional_vars_file: "{{ lookup('first_found', '../../../../secrets.yml', errors='ignore') }}"
+
   pre_tasks:
    - name: Update repositories cache
      package:
@@ -13,4 +15,7 @@
     - name: "Include git_pg-promise"
       include_role:
         name: "git_pg-promise"
+    - name: optional_vars_file
+      include_vars: "{{ optional_vars_file }}"
+      when: optional_vars_file is file
       
