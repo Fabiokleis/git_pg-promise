@@ -4,7 +4,7 @@
 
   vars_files:
     - vars.yml 
-    - ../../../../secrets.yml
+    - ../../secrets.yml
   vars:
     optional_vars_file: "{{ lookup('first_found', '../../../../secrets.yml', errors='ignore') }}"
 
