@@ -6,10 +6,12 @@
   gather_facts: false
   become: true
   tasks:
-  - name: Example assertion
+  - name: test if app are running 
     uri:
       url: "http://127.0.0.1:3000"
       status_code: 200
-  - name:
-    include_role:
-      name: pg-promise
+    register: result_http
+    #failed_when: "'hello, world!' not in result_http.content"
+
+  - name: show content of test
+    debug: var=result_http.stdout
