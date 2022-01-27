@@ -42,5 +42,5 @@ jobs:
           PY_COLOR: '1'
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: '${{ matrix.distro }}'
-          vault_gituser: '${{secrets.VAULT_GITUSER}}'
-          vault_gitpass: '${{secrets.VAULT_GITPASS}}'
+          vault_gituser: '${{secrets.GITUSER}}'
+          vault_gitpass: '${{secrets.GITPASS}}'
