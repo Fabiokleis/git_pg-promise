@@ -47,6 +47,7 @@ jobs:
         env:
           PY_COLOR: '1'
           ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO: '${{matrix.distro}}'
         
       - name: Run molecule converge.
         run: molecule converge
