@@ -19,13 +19,12 @@ jobs:
         distro:
           - ubuntu2004
           - debian10
-          - centos8
           
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         
-      - name: Send vault file
+      - name: Sending vault file
         run: echo '${{secrets.VAULT}}' > ~/.vault
         
       - name: Set up Python3
@@ -35,10 +34,25 @@ jobs:
         
       - name: Install test dependencies.
         run: pip3 install ansible molecule[docker] yamllint ansible-lint
+      
+      - name: Sending vault variables
+        run: echo '${{secrets.GITVAULT}}' > ~/secrets.yml
+      
+      - name: Encrypt vault variables
+        run: ansible-vault encrypt ~/secrets.yml --vault-pass-file ~/.vault
      
-      - name: Run molecule tests.
-        run: molecule test
+      - name: Run molecule create.
+        run: molecule create
         env:
           PY_COLOR: '1'
           ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: '${{ matrix.distro }}'
+          MOLECULE_DISTRO: '${{matrix.distro}}'
+        
+      - name: Run molecule converge.
+        run: molecule converge
+      
+      - name: Run molecule verify
+        run: molecule verify
+          
+      - name: Run molecule destroy.
+        run: molecule destroy
