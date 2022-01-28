@@ -50,12 +50,9 @@ jobs:
         
       - name: Run molecule converge.
         run: molecule converge
-        env:
-          PY_COLOR: '1'
-          ANSIBLE_FORCE_COLOR: '1'
+      
+      - name: Run molecule verify
+        run: molecule verify
           
       - name: Run molecule destroy.
         run: molecule destroy
-        env:
-          PY_COLOR: '1'
-          ANSIBLE_FORCE_COLOR: '1'
