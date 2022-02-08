@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include front_pg-promise"
+      include_role:
+        name: "front_pg-promise"
