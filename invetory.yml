@@ -7,10 +7,8 @@ all:
     pg_promise:
       hosts:
         debian.sysadmin.example:
-        #ubuntu.sysadmin.example:
-    front_pg-promise:
+    front_pg_promise:
       hosts:
-        #debian.sysadmin.example:
         ubuntu.sysadmin.example:
 
 
