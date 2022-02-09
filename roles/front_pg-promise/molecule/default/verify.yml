@@ -5,6 +5,11 @@
   hosts: all
   gather_facts: false
   tasks:
-  - name: Example assertion
-    assert:
-      that: true
+  - name: test app
+    uri:
+      url: "http://127.0.0.1:3000"
+      status_code: 404 # 200 later
+    register: result_http
+ 
+  - name: show content of test
+    debug: var=result_http.stdout

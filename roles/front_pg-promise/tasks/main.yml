@@ -1,2 +1,15 @@
 ---
 # tasks file for front_pg-promise
+- name: Install dependencies
+  import_tasks: dependencies.yml
+
+- name: clone frontend repo
+  git:
+    repo: "https://{{ gituser }}:{{ gitpass }}@github.com/fabiokleis/pg_promise-front"
+    dest: "{{ dir }}"
+  register: git_results
+  tags:
+    - clone
+
+- name: show git clone results
+  debug: var=git_results.stdout
