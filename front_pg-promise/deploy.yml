@@ -7,4 +7,4 @@
       package:
         update_cache: yes
   roles:
-    - role: front_pg-promise
+    - role: './roles/front_pg-promise'
