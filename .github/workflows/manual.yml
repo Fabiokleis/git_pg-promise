@@ -1,6 +1,9 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -41,18 +44,9 @@ jobs:
       - name: Encrypt vault variables
         run: ansible-vault encrypt ~/secrets.yml --vault-pass-file ~/.vault
      
-      - name: Run molecule create.
-        run: molecule create
+      - name: Run molecule test.
+        run: molecule test
         env:
           PY_COLOR: '1'
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: '${{matrix.distro}}'
-        
-      - name: Run molecule converge.
-        run: molecule converge
-      
-      - name: Run molecule verify
-        run: molecule verify
-          
-      - name: Run molecule destroy.
-        run: molecule destroy

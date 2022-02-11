@@ -6,6 +6,9 @@ all:
   children:
     pg_promise:
       hosts:
-        #debian.sysadmin.example:
+        debian.sysadmin.example:
+    front_pg_promise:
+      hosts:
         ubuntu.sysadmin.example:
+
 
