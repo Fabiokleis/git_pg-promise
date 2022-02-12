@@ -20,13 +20,9 @@ jobs:
           - ubuntu2004
           - debian10
         dir:
-          - roles/git_pg-promise/
-          - roles/front_pg-promise/
+          - ./roles/git_pg-promise/
+          - ./roles/front_pg-promise/
           
-    defaults:
-      run:
-        working-directory: '${{matrix.dir}}'
- 
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
@@ -50,6 +46,7 @@ jobs:
      
       - name: Run molecule test inside each role.
         run: molecule test
+        working-directory: '${{matrix.dir}}'
         env:
           PY_COLOR: '1'
           ANSIBLE_FORCE_COLOR: '1'
