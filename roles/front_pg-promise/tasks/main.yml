@@ -19,6 +19,7 @@
 
 - name: Install npm update
   shell: npm install -g npm@8.4.1
+  changed_when: false
   tags:
     - npm_update
 
@@ -38,6 +39,7 @@
   shell: "npm run build"
   args:
     chdir: "{{ dir }}"
+  changed_when: false
   register: build
   tags:
     - npm_install
@@ -46,16 +48,3 @@
   debug: var=build.stdout
   tags:
     - npm_install
-
-- name: Install serve
-  shell: "npm install -g serve"
-  register: serve
-  tags:
-    - npm_install
-
-- name: show serve results
-  debug: var=serve.stdout
-  tags:
-    - npm_install
-
-
