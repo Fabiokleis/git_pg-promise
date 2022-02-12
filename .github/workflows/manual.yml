@@ -16,13 +16,17 @@ jobs:
   
     strategy:
       matrix:
-        dir:
-          - ./roles/git_pg-promise/
-          - ./roles/front_pg-promise/
         distro:
           - ubuntu2004
           - debian10
+        dir:
+          - ./roles/git_pg-promise/
+          - ./roles/front_pg-promise/
           
+    defaults:
+      run:
+        working-directory: '${{matrix.dir}}'
+ 
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
@@ -45,7 +49,6 @@ jobs:
         run: ansible-vault encrypt ~/secrets.yml --vault-pass-file ~/.vault
      
       - name: Run molecule test inside each role.
-        working-directory: '${{matrix.dir}}'
         run: molecule test
         env:
           PY_COLOR: '1'
