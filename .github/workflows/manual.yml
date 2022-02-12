@@ -20,8 +20,8 @@ jobs:
           - ubuntu2004
           - debian10
         dir:
-          - ./roles/git_pg-promise/
-          - ./roles/front_pg-promise/
+          - git_pg-promise/
+          - front_pg-promise/
           
     defaults:
       run:
