@@ -2,7 +2,7 @@
 # tasks to configure nginx to serve reactjs app
 - name: Copy generated static files from build of react-app
   copy:
-    src: "{{ dir }}/build/"
+    src: "{{ dir }}/public/"
     dest: "{{ static_files_dir }}/front_pg-promise/"
   register: nginx_results
   tags:
