@@ -2,7 +2,7 @@ server {
     listen 3000;
 
     root {{ dir }}/front_pg-promise;
-    index.html;
+    index index.html index.htm;
     
     server_name {{ server_name }};
 
