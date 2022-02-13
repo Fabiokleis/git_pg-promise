@@ -31,3 +31,12 @@
   debug: var=build.stdout
   tags:
     - npm_install
+
+- name: show npm dir
+  shell: "ls -la; pwd"
+  args:
+    chdir: "{{ dir }}"
+  tags:
+    - npm_install
+
+
