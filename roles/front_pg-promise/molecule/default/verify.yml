@@ -7,7 +7,7 @@
   tasks:
   - name: test app
     uri:
-      url: "http://127.0.0.1:3000"
+      url: "{{ server_name }}"
       status_code: 404 # 200 later
     register: result_http
  

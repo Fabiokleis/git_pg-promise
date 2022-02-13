@@ -1,7 +1,9 @@
 ---
+# install dependencies
 - name: Install dependencies to run front react-app 
   package:
     name:
+      - nginx
       - wget
       - git
     state: present

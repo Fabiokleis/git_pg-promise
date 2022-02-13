@@ -1,50 +1,13 @@
 ---
 # tasks file for front_pg-promise
-- name: Install dependencies
+- name: install dependencies
   import_tasks: dependencies.yml
 
-- name: clone frontend repo
-  git:
-    repo: "https://{{ gituser }}:{{ gitpass }}@github.com/fabiokleis/pg_promise-front"
-    dest: "{{ dir }}"
-    force: yes
-  register: git_results
-  tags:
-    - clone
+- name: clone repo from github
+  import_tasks: clone.yml
 
-- name: show git clone results
-  debug: var=git_results.stdout
-  tags:
-    - clone
+- name: install and build react app
+  import_tasks: npm.yml
 
-- name: Install npm update
-  shell: npm install -g npm@8.4.1
-  changed_when: false
-  tags:
-    - npm_update
-
-- name: Install node modules
-  npm:
-    path: "{{ dir }}" 
-  register: npm_results
-  tags:
-    - npm_install
-
-- name: show npm modules results
-  debug: var=npm_results.stdout
-  tags:
-    - npm_install
-
-- name: Build react-app
-  shell: "npm run build"
-  args:
-    chdir: "{{ dir }}"
-  changed_when: false
-  register: build
-  tags:
-    - npm_install
-
-- name: show build results
-  debug: var=build.stdout
-  tags:
-    - npm_install
+- name: configure nginx to serve react app
+  import_tasks: nginx.yml

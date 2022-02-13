@@ -1,5 +1,7 @@
 ---
 # vars file for git_pg-promise
 dir: /app/front_pg-promise
+static_files_dir: /var/www/html
+server_name: "{{ ansible_default_ipv4.address }}"
 gituser: "{{ vault_gituser }}"
 gitpass: "{{ vault_gitpass }}"
