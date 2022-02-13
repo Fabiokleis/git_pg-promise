@@ -31,25 +31,3 @@
   debug: var=build.stdout
   tags:
     - npm_install
-
-- name: show npm dir
-  shell: "pwd;"
-  args:
-    chdir: "{{ dir }}"
-  register: out_results
-  tags:
-    - npm_install
-
-- name: show out result
-  debug: var=out_results.stdout
-
-- name: show npm files
-  shell: "ls -la"
-  args:
-    chdir: "{{ dir }}"
-  register: out2_results
-  tags:
-    - npm_install
-
-- name: show out result
-  debug: var=out2_results.stdout

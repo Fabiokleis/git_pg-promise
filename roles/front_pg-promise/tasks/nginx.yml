@@ -4,6 +4,7 @@
   copy:
     src: "{{ dir }}/build/"
     dest: "{{ static_files_dir }}/front_pg-promise/"
+    remote_src: yes
   register: nginx_results
   tags:
     - nginx
