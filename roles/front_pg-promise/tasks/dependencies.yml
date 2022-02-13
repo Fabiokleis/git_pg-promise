@@ -12,5 +12,11 @@
   tags:
     - install
 
+- name: start nginx
+  service:
+    name: nginx
+    state: started
+    enabled: true
+
 - name: show the dependencies result
   debug: var=dp_results.stdout  
