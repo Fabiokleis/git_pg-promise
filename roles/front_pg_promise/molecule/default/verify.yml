@@ -6,8 +6,8 @@
   tasks:
   - name: test app
     uri:
-      url: "{{ server_name }}"
-      status_code: 404 # 200 later
+      url: "http://localhost:80"
+      status_code: 200 # maybe 404
     register: result_http
  
   - name: show content of test
