@@ -6,9 +6,12 @@ driver:
 platforms:
   - name: instance
     image: "geerlingguy/docker-${MOLECULE_DISTRO}-ansible"
-    command: ""
+    command: "/usr/sbin/init"
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /run
+      - /tmp
     privileged: true
     pre_build_image: true
 provisioner:
