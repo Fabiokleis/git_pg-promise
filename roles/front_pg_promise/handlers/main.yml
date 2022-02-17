@@ -1,0 +1,7 @@
+---
+# handlers file for front_pg-promise
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
+    enabled: true

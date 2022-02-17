@@ -3,21 +3,22 @@
   hosts: all
 
   vars_files:
-    - vars.yml
-  
+    - vars.yml 
   vars:
     optional_vars_file: "{{ lookup('first_found', '~/secrets.yml', errors='ignore') }}"
 
   pre_tasks:
-    - name: Update repositories cache
-      package:
-        update_cache: yes
+   - name: Update repositories cache
+     package:
+        update_cache: yes 
 
   tasks:
     - name: optional_vars_file
       include_vars: "{{ optional_vars_file }}"
       when: optional_vars_file is file
-
-    - name: "Include front_pg-promise"
+      
+    - name: "Include git_pg_promise"
       include_role:
-        name: "front_pg-promise"
+        name: "git_pg_promise"
+
+  

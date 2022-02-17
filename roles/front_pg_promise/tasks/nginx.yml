@@ -1,0 +1,44 @@
+---
+# tasks to configure nginx to serve reactjs app
+- name: Copy generated static files from build of react-app
+  copy:
+    src: "{{ dir }}/build/"
+    dest: "{{ static_files_dir }}/front_pg-promise/"
+    remote_src: yes
+  register: nginx_results
+  tags:
+    - nginx
+
+- name: show copy task
+  debug: var=nginx_results.stdout
+  tags:
+    - nginx
+
+- name: Apply nginx template configs
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/default
+  notify: Restart nginx
+  register: template_results
+  tags:
+    - nginx
+
+- name: show template task
+  debug: var=template_results.stdout
+  tags:
+    - nginx
+
+- name: Enable front-end app
+  file:
+    src: /etc/nginx/sites-available/default
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+  notify: Restart nginx
+  register: file_results
+  tags:
+    - nginx
+
+- name: show file task
+  debug: var=file_results.stdout
+  tags:
+    - nginx

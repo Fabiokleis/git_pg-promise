@@ -1,0 +1,33 @@
+---
+# tasks to install and build app with npm
+- name: Install npm update
+  shell: npm install -g npm@8.4.1
+  changed_when: false
+  tags:
+    - npm_update
+
+- name: Install node modules
+  npm:
+    path: "{{ dir }}" 
+  register: npm_results
+  tags:
+    - npm_install
+
+- name: show npm modules results
+  debug: var=npm_results.stdout
+  tags:
+    - npm_install
+
+- name: Build react-app
+  shell: "npm run build"
+  args:
+    chdir: "{{ dir }}"
+  changed_when: false
+  register: build
+  tags:
+    - npm_install
+
+- name: show build results
+  debug: var=build.stdout
+  tags:
+    - npm_install

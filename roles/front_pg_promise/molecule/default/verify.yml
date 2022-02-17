@@ -1,14 +1,13 @@
 ---
 # This is an example playbook to execute Ansible tests.
-
 - name: Verify
   hosts: all
-  gather_facts: false
+
   tasks:
   - name: test app
     uri:
-      url: "http://127.0.0.1:3000"
-      status_code: 404 # 200 later
+      url: "http://localhost:80"
+      status_code: 200 # maybe 404
     register: result_http
  
   - name: show content of test

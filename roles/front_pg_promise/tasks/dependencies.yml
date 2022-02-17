@@ -1,7 +1,9 @@
 ---
+# install dependencies
 - name: Install dependencies to run front react-app 
   package:
     name:
+      - nginx
       - wget
       - git
     state: present
@@ -9,6 +11,12 @@
   register: dp_results
   tags:
     - install
+
+- name: start nginx
+  service:
+    name: nginx
+    state: started
+    enabled: true
 
 - name: show the dependencies result
   debug: var=dp_results.stdout  

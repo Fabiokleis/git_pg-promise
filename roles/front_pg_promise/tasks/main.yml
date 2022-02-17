@@ -1,0 +1,13 @@
+---
+# tasks file for front_pg-promise
+- name: install dependencies
+  import_tasks: dependencies.yml
+
+- name: clone repo from github
+  import_tasks: clone.yml
+
+- name: install and build react app
+  import_tasks: npm.yml
+
+- name: configure nginx to serve react app
+  import_tasks: nginx.yml

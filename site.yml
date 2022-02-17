@@ -1,0 +1,3 @@
+---
+- import_playbook: pg_promise/deploy.yml
+- import_playbook: front_pg-promise/deploy.yml

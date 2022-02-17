@@ -20,6 +20,7 @@
   git:
     repo: "https://{{ gituser }}:{{ gitpass }}@github.com/fabiokleis/pg-promise"
     dest: "{{ dir }}" 
+    force: yes
   tags:
     - clone
 
