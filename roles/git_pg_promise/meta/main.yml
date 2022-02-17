@@ -2,7 +2,7 @@ galaxy_info:
   author: fabiokleis
   description: back-end role of nodejs app pg-promise
   company: your company (optional)
-  role_name: git_pg-promise
+  role_name: git_pg_promise
   namespace: fabiokleis
 
   # If the issue tracker for your role is not on github, uncomment the
