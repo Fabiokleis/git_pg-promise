@@ -19,6 +19,6 @@
       include_vars: "{{ optional_vars_file }}"
       when: optional_vars_file is file
 
-    - name: "Include front_pg-promise"
+    - name: "Include front_pg_promise"
       include_role:
-        name: "front_pg-promise"
+        name: "front_pg_promise"

@@ -7,4 +7,4 @@
       package:
         update_cache: yes
   roles:
-    - role: git_pg-promise
+    - role: git_pg_promise
