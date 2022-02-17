@@ -2,4 +2,4 @@
 # vars file for front_pg-promise
 dir: /app/front_pg-promise
 static_files_dir: /var/www/html
-server_name: "{{ ansible_default_ipv4.address }}"
+server_name: localhost
